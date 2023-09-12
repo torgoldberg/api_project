@@ -1,0 +1,26 @@
+[
+  {
+    "id": 111,
+    "category": {"id": 1, "name": "category1"},
+    "name": "available",
+    "photoUrls": ["string"],
+    "tags": [{"id": 1, "name": "tags1"}],
+    "status": "available"
+  },
+  {
+    "id": 222,
+    "category": {"id": 2, "name": "category2"},
+    "name": "pending",
+    "photoUrls": ["string"],
+    "tags": [{"id": 2, "name": "tags2"}],
+    "status": "pending"
+  },
+  {
+    "id": 333,
+    "category": {"id": 3, "name": "category3"},
+    "name": "sold",
+    "photoUrls": ["string"],
+    "tags": [{"id": 3, "name": "tags3"}],
+    "status": "sold"
+  }
+]
