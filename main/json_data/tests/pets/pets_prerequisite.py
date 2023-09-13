@@ -1,7 +1,8 @@
 import os
 import json
 import logging as logger
-from main.utilities.requests_handle import RequestsUtilities
+
+from main.json_data.utilities.requests_handle import RequestsUtilities
 
 endpoint = 'pet'
 
@@ -15,7 +16,7 @@ class PetsPrerequisite(object):
         """
         # make sure there is users type
         path = os.path.dirname(os.path.realpath(__file__))
-        payload_template = os.path.join(path, '..', '..', 'json_data/', 'pet_payload', 'create_pet.json')
+        payload_template = os.path.join(path, '../../../../main-old/tests', '..', 'json_data/', 'pet_payload', 'create_pet.json')
         with open(payload_template, 'r') as f:
             petsList = json.loads(f.read())
         # create pets from json

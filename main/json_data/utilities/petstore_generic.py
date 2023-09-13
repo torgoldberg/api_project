@@ -2,7 +2,8 @@ import logging as logger
 import os
 import json
 from pydantic import BaseModel
-from main.utilities.requests_handle import RequestsUtilities
+
+from main.json_data.utilities.requests_handle import RequestsUtilities
 
 
 class PetStoreGeneric(BaseModel):
@@ -43,7 +44,7 @@ class PetStoreGeneric(BaseModel):
                         expected_status_code_validation=expected_status_code)
         # get data for the call
         path = os.path.dirname(os.path.realpath(__file__))
-        payload_template = os.path.join(path, '../', 'json_data/', f'{endpoint}_payload',
+        payload_template = os.path.join(path, '../../../main-old/', 'json_data/', f'{endpoint}_payload',
                                         f'create_{endpoint}.json')
         # update payload
         with open(payload_template) as f:
@@ -71,7 +72,7 @@ class PetStoreGeneric(BaseModel):
                         expected_status_code_validation=expected_status_code)
         # get existing data for the call
         path = os.path.dirname(os.path.realpath(__file__))
-        payload_template = os.path.join(path, '../', 'json_data/', f'{endpoint}_payload', f'update_{endpoint}.json')
+        payload_template = os.path.join(path, '../../../main-old/', 'json_data/', f'{endpoint}_payload', f'update_{endpoint}.json')
         # update payload
         with open(payload_template) as f:
             payload = json.load(f)

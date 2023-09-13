@@ -3,7 +3,6 @@ import random
 import string
 from phone_gen import PhoneNumber
 from mimesis import Internet
-import bcrypt
 
 
 class GenericUtilities(object):
@@ -73,16 +72,3 @@ class GenericUtilities(object):
 
         return ip_address
 
-    @staticmethod
-    def generate_random_password_hash(password_hash=None, length=None):
-        """
-        Generate a random password hash
-        """
-        if not password_hash:
-            password = GenericUtilities.generate_complicated_word(length=length)
-            salt = bcrypt.gensalt(rounds=4)
-            password_hash = bcrypt.hashpw(password.encode("utf-8"), salt)
-            password_hash = str(password_hash)
-        logger.debug(f"Randomly generated password hash: {password_hash}")
-
-        return password_hash
