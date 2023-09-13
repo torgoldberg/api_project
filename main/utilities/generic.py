@@ -51,21 +51,6 @@ class GenericUtilities(object):
         return random_integer
 
     @staticmethod
-    def generate_complicated_word(length=8):
-        """
-        Generate a word with numbers, numeric, specials characters, lower case and upper case
-        """
-        # alphabet = string.ascii_letters + string.digits + string.punctuation
-        # random_word = ''.join(secrets.choice(alphabet) for i in range(length))
-        random_list = []
-        for i in range(length):
-            random_list.append(random.choice(string.ascii_letters + string.digits + string.punctuation))
-        random_word = "".join(random_list)
-        logger.debug(f"Randomly generated a complicated world: {random_word}")
-
-        return random_word
-
-    @staticmethod
     def generate_random_phone_number(phone_number=None):
         """
         Generate a random phone number

@@ -14,7 +14,7 @@ class CredentialsUtilities(object):
         secret = os.environ['BASIC_AUTH_SECRET']
         logger.debug(f"key and secret: " + key + " , " + secret)
         if not key or not secret:
-            raise Exception("The api request credentials must be in env variables")
+            raise Exception(f"The api request credentials must be in env variables")
         else:
             key_secret = {'key': key, 'secret': secret}
         credentials = HTTPBasicAuth(key_secret['key'], key_secret['secret'])

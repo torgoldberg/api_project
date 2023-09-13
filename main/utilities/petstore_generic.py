@@ -34,7 +34,7 @@ class PetStoreGeneric(BaseModel):
         return object_json
 
     @staticmethod
-    def create_object(endpoint, additional_args=None, expected_status_code=201):
+    def create_object(endpoint, additional_args=None, expected_status_code=200):
         """
         Create a new object, we can chose not to use the payload json file, and we can add data using the additional_args
         """
@@ -62,7 +62,7 @@ class PetStoreGeneric(BaseModel):
         return respond_json
 
     @staticmethod
-    def update_object(endpoint, object_id, additional_args=None, expected_status_code=200):
+    def update_object(endpoint, object_id=None, additional_args=None, expected_status_code=200):
         """
         Update an existing object with static data using his ID
         """
@@ -70,35 +70,44 @@ class PetStoreGeneric(BaseModel):
         PetStoreGeneric(object_type_validation=endpoint, additional_args_validation=additional_args,
                         expected_status_code_validation=expected_status_code)
         # get existing data for the call
-        existing_data = PetStoreGeneric.get_object_by_id_or_name(endpoint=endpoint, object_id_or_name=object_id)
         path = os.path.dirname(os.path.realpath(__file__))
         payload_template = os.path.join(path, '../', 'json_data/', f'{endpoint}_payload', f'update_{endpoint}.json')
         # update payload
         with open(payload_template) as f:
             payload = json.load(f)
-        for key in existing_data:
-            if key in payload:
-                payload[key] = existing_data[key]
         if additional_args:
             payload.update(additional_args)
         # make the call
-        respond_api = RequestsUtilities.json_request('PUT', endpoint=f'{endpoint}/{object_id}', payload=payload)
+        if object_id:
+            specific_object_data = PetStoreGeneric.get_object_by_id_or_name(endpoint=endpoint, object_id_or_name=object_id)
+            payload.update(specific_object_data)
+            respond_api = RequestsUtilities.json_request('PUT', endpoint=f'{endpoint}/{object_id}', payload=payload)
+            endpoint = f'{endpoint}/{object_id}'
+        else:
+            respond_api = RequestsUtilities.json_request('PUT', endpoint=f'{endpoint}', payload=payload)
+            endpoint = f'{endpoint}'
         status_code = respond_api.status_code
         respond_json = respond_api.json()
         # verify status code respond
         RequestsUtilities.assert_status_code(status_code=status_code, expected_status_code=expected_status_code,
-                                             endpoint=f'{endpoint}/{object_id}', respond_json=respond_json)
+                                             endpoint=endpoint, respond_json=respond_json)
         return respond_json
 
     @staticmethod
-    def remove_existing_object_by_id_or_name(endpoint, object_id_or_name):
+    def remove_existing_object_by_id_or_name(endpoint, object_id_or_name, expected_status_code=200):
         """
         Remove an existing object using its ID
         """
         # verify the data is correct
         PetStoreGeneric(object_type_validation=endpoint)
         logger.debug(f"We are removing object: {object_id_or_name}")
-        return RequestsUtilities.json_request('DELETE', endpoint=f'{endpoint}/{object_id_or_name}')
+        respond_api = RequestsUtilities.json_request('DELETE', endpoint=f'{endpoint}/{object_id_or_name}')
+        status_code = respond_api.status_code
+        respond_json = respond_api.json()
+        RequestsUtilities.assert_status_code(status_code=status_code, expected_status_code=expected_status_code,
+                                             endpoint=endpoint, respond_json=respond_json)
+
+        return respond_json
 
     @staticmethod
     def get_random_existing_object(endpoint):
