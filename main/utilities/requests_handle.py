@@ -1,9 +1,8 @@
 import json
 import logging as logger
 from requests import Request, Session
-
-from main.json_data.utilities.credentials import CredentialsUtilities
-from main.json_data.utilities.tenant import TenantUtilities
+from main.utilities.credentials import CredentialsUtilities
+from main.utilities.tenant import TenantUtilities
 
 basic_auth = CredentialsUtilities.get_basic_auth_key_secret()
 api_key = CredentialsUtilities.get_api_key()

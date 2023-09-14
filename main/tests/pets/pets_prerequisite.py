@@ -1,8 +1,7 @@
 import os
 import json
 import logging as logger
-
-from main.json_data.utilities.requests_handle import RequestsUtilities
+from main.utilities.requests_handle import RequestsUtilities
 
 endpoint = 'pet'
 

@@ -2,9 +2,9 @@ import json
 import pytest
 import logging as logger
 
-from main.json_data.tests.pets.pets_prerequisite import PetsPrerequisite
-from main.json_data.utilities.generic import GenericUtilities
-from main.json_data.utilities.petstore_generic import PetStoreGeneric
+from main.tests.pets.pets_prerequisite import PetsPrerequisite
+from main.utilities.generic import GenericUtilities
+from main.utilities.petstore_generic import PetStoreGeneric
 
 
 @pytest.fixture()

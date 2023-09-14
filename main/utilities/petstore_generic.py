@@ -2,8 +2,7 @@ import logging as logger
 import os
 import json
 from pydantic import BaseModel
-
-from main.json_data.utilities.requests_handle import RequestsUtilities
+from main.utilities.requests_handle import RequestsUtilities
 
 
 class PetStoreGeneric(BaseModel):
