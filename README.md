@@ -28,6 +28,17 @@ To install all project dependencies, navigate to the root project path and execu
 pip install -r requirements.txt
 ```
 
+To read and environment variable settings to the command within the current session execute the following command:
+
+```shell
+source env.sh
+```
+To Make sure you have the environment variable settings execute the following command:
+
+```shell
+source
+```
+
 ## Usage
 
 in the root path run the next command to run all tests from test_main:
