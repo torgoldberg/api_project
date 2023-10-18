@@ -1,8 +1,8 @@
 import pytest
 import logging as logger
 
-from main.tests.pets.pets_prerequisite import PetsPrerequisite
-from main.utilities.petstore_generic import PetStoreGeneric
+from tests.pets.pets_prerequisite import PetsPrerequisite
+from utilities.petstore_generic import PetStoreGeneric
 
 
 @pytest.fixture()
