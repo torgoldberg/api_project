@@ -1,6 +1,6 @@
 # api_project
 
-Test API in Python for petstore.swagger.io.
+Test API in Python for petstore.swagger.io
 
 ## Table of Contents
 
